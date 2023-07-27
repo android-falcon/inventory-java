@@ -15,6 +15,7 @@
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/drawable/bac_ce.xml" value="0.1" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/drawable/bac_frame.xml" value="0.1" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/drawable/bac_frame_no.xml" value="0.126" />
+        <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/drawable/bac_frame_s.xml" value="0.1" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/drawable/bac_notwhite.xml" value="0.126" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/drawable/edit_bac.xml" value="0.126" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/drawable/edit_bac_log2.xml" value="0.126" />
@@ -56,6 +57,8 @@
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/layout/bluetooth_menu.xml" value="0.1" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/layout/bluetooth_menu_esc.xml" value="0.1" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/layout/boom.xml" value="0.1" />
+        <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/layout/caption_item_row.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/layout/caption_layout_xml.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/layout/cci.xml" value="0.1" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/layout/change_password.xml" value="0.1" />
         <entry key="..\:/Users/mr gamer/AndroidStudioProjects/InventoryApp/app/src/main/res/layout/change_password_yellow.xml" value="0.1" />

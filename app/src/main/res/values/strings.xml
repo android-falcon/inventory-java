@@ -608,6 +608,27 @@
     <string name="importOffer">Import Offers</string>
     <string name="offerSave">Offer Table Save ...</string>
     <string name="saveOffer">save Offer Table Successful</string>
+    <string name="Caption">Caption</string>
+    <string name="getCaption">Get Caption</string>
+    <string name="getCaptionSuccesful">get CaptionSuccesful</string>
+    <string name="getCaptionDetails">get item info details</string>
+    <string name="DataGet">Get Data Successful</string>
+    <string name="ItemInfo">Item Info</string>
+    <string name="get_data">Get Data</string>
+    <string name="itemGroup">Item Group</string>
+    <string name="itemColor">Item Color</string>
+    <string name="itemSize">Item Size</string>
+    <string name="itemModel">itemModel</string>
+    <string name="itemGs">item Gs</string>
+    <string name="itemG">item Gs</string>
+    <string name="itemDiv">item Div</string>
+    <string name="itemSub1">item Sub 1</string>
+    <string name="itemSub2">item Sub2</string>
+    <string name="itemSub3">item Sub3</string>
+    <string name="itemSub4">item Sub4</string>
+    <string name="itemSub5">item Sub5</string>
+    <string name="itemSub6">item Sub6</string>
+    <string name="itemSub7">item Sub7</string>
     <string-array name="printer_list_all">
         <item>"TP801"</item>
         <item>"TP805"</item>

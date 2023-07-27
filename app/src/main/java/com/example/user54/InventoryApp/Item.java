@@ -127,7 +127,7 @@ public class Item extends AppCompatActivity {
     TableRow row;
     public static List<ItemCard> barcodeListForPrint;
     public static List<AssestItem> barcodeListForPrintAssest;
-    LinearLayout newItem, importText, pBarcode, pShelfTag ,ItemPrice,ItemCost,Assesst;
+    LinearLayout newItem, importText, pBarcode, pShelfTag ,ItemPrice,ItemCost,Assesst,CaptionLayout;
     public static List<ItemCard> itemList;
     public static List<AssestItem> itemListAssest;
     List<ItemCard> itemCodeCard ;
@@ -161,7 +161,7 @@ public class Item extends AppCompatActivity {
         ItemPrice.startAnimation(animFadein);
         Assesst.startAnimation(animFadein);
         ItemCost.startAnimation(animFadein);
-
+        CaptionLayout.startAnimation(animFadein);
 
         barcodeListForPrint=new ArrayList<>();
         barcodeListForPrintAssest=new ArrayList<>();
@@ -229,6 +229,12 @@ TextView barCodTextTemp;
                     Assesst.setClickable(false);
                     openAssesst=true;
                     showPrintAssesstDialog();
+                    break;
+
+                case R.id.CaptionLayout:
+                    //CaptionLayout.setClickable(false);
+                    Intent r=new Intent(Item.this, com.example.user54.InventoryApp.CaptionLayout.class);
+                    startActivity(r);
                     break;
 //
 
@@ -4604,11 +4610,12 @@ printEditTextTag.setText(convertToEnglish(today));
         pShelfTag = (LinearLayout) findViewById(R.id.shelf);
         ItemPrice= (LinearLayout) findViewById(R.id.ItemPrice);
         ItemCost= (LinearLayout) findViewById(R.id.ItemCost);
-
+        CaptionLayout=findViewById(R.id.CaptionLayout);
         Assesst= (LinearLayout) findViewById(R.id.Assesst);
 
         importText.setVisibility(View.GONE);
         newItem.setOnClickListener(showDialogOnClick);
+        CaptionLayout.setOnClickListener(showDialogOnClick);
 //        importText.setOnClickListener(showDialogOnClick);
         pBarcode.setOnClickListener(showDialogOnClick);
         pShelfTag.setOnClickListener(showDialogOnClick);

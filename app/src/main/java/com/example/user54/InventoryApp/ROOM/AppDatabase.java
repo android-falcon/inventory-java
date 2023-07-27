@@ -18,7 +18,7 @@ import com.example.user54.InventoryApp.Model.OfferTable;
 import com.example.user54.InventoryApp.controll;
 
 
-@Database(entities = {ItemCard.class, ItemSwitch.class, ItemUnit.class, OfferTable.class}, version =  104 , exportSchema = false)
+@Database(entities = {ItemCard.class, ItemSwitch.class, ItemUnit.class, OfferTable.class}, version =  105 , exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDaoCard itemCard();
@@ -31,7 +31,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static String DatabaseName="InventoryDBase";
 
 
-    static final Migration FROM_1_TO_2 = new Migration(99, 104) {
+    static final Migration FROM_1_TO_2 = new Migration(99, 105) {
         @Override
         public void migrate(final SupportSQLiteDatabase database) {
 //            database.execSQL("ALTER TABLE Repo

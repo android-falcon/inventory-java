@@ -86,6 +86,7 @@ String location="1";
         assestItemListBackUp=new ArrayList<>();
         animFadein = AnimationUtils.loadAnimation(Report.this, R.anim.fade_in);
         exportText.startAnimation(animFadein);
+
         ExportNewItemList.startAnimation(animFadein);
         ExportTransfer.startAnimation(animFadein);
         showAssast.startAnimation(animFadein);
@@ -127,6 +128,8 @@ String location="1";
                     ExportNewItemList.setClickable(false);
                     showExportNewItemList();
                     break;
+
+
 
                 case R.id.showAssast:
                     showAssast.setClickable(false);
@@ -2015,6 +2018,7 @@ String location="1";
     public void notClickable() {
         ExportNewItemList.setClickable(false);
         exportText.setClickable(false);
+        //CaptionLayout.setClickable(false);
         ExportTransfer.setClickable(false);
         exportExpDate.setClickable(false);
         ExportAlternative.setClickable(false);
@@ -2073,6 +2077,7 @@ String location="1";
 
         ExportTransfer.setEnabled(false);
         exportText.setOnClickListener(showDialogOnClick);
+
         ExportNewItemList.setOnClickListener(showDialogOnClick);
 //        ExportTransfer.setOnClickListener(showDialogOnClick);
         exportExpDate.setOnClickListener(showDialogOnClick);

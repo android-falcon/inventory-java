@@ -631,7 +631,7 @@ public class BluetoothConnectMenu extends Activity {
                             for (int i = 0; i < Item.barcodeListForPrint.size(); i++) {
                                 Bitmap bitmaps=null;
                                 if(companyNo==0) {
-                                     bitmaps = convertLayoutToImage_Barcode_max(Item.barcodeListForPrint.get(i), Item.itemCardForPrint.getOrgPrice(),Item.itemCardForPrint.getIsName());
+                                     bitmaps = convertLayoutToImage_Barcode(Item.barcodeListForPrint.get(i), Item.itemCardForPrint.getOrgPrice(),Item.itemCardForPrint.getIsName());
                                 }else if (companyNo==1){
                                      bitmaps = convertLayoutToImage_Barcode_athouab(Item.barcodeListForPrint.get(i), Item.itemCardForPrint.getOrgPrice(), Item.itemCardForPrint.getIsName());
 

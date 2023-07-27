@@ -115,7 +115,8 @@
             tools:replace="android:screenOrientation"
             android:stateNotNeeded="true"/>
 
-<activity android:name=".Activity_Main"></activity>
+        <activity android:name=".Activity_Main"></activity>
+        <activity android:name=".CaptionLayout"></activity>
         <activity android:name=".Activity_Setting"></activity>
         <activity android:name=".Activity_DeviceList"></activity>
         <activity android:name=".Activity_Wifi"></activity>
