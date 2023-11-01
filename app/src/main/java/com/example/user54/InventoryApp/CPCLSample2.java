@@ -116,11 +116,11 @@ public class CPCLSample2 {
             this.cpclPrinter.setMedia(this.paperType);
 
         }
-        if(printType.equals("1")){
+        if(printType.equals("1")||printType.equals("3")){
             Log.e("PrintType","imageTestEnglish "+printType);
                     this.cpclPrinter.setJustification(1);// for zepra==1  orsewoo
         }
-        this.cpclPrinter.printBitmap(testB, 0, 0);//x=400
+        this.cpclPrinter.printBitmap(testB, 0, 5);//x=400
 
 //        this.cpclPrinter.printBitmap("//sdcard//temp//test//sample_3.jpg", 100, 200);
 //        this.cpclPrinter.printBitmap("//sdcard//temp//test//sample_4.jpg", 120, 245);

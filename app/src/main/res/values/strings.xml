@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Inventory App </string>
-    <string name="inventory_system">V2.16-04-23</string>
+    <string name="inventory_system">V2.15-10-23_m</string>
     <string name="item_code">Item Code </string>
     <string name="item_name">Item Name </string>
     <string name="item_qty">Item QTY </string>
@@ -152,6 +152,8 @@
     <string name="des_1">Des.1</string>
     <string name="des_4">Des.4</string>
     <string name="des_5">Des.5</string>
+    <string name="des_6">Des.6 coName</string>
+
 
     <string name="item_type">Item Type :</string>
     <string name="inventory_item">Inventory Item</string>
@@ -629,6 +631,7 @@
     <string name="itemSub5">item Sub5</string>
     <string name="itemSub6">item Sub6</string>
     <string name="itemSub7">item Sub7</string>
+    <string name="companyName">company Name</string>
     <string-array name="printer_list_all">
         <item>"TP801"</item>
         <item>"TP805"</item>

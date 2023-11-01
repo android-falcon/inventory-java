@@ -228,6 +228,9 @@ public class InventoryDatabase extends SQLiteOpenHelper {
     private static final String SHELF_TAG_HEIGHT="SHELF_TAG_HEIGHT";
     private static final String IS_QTY_MINUS="IS_QTY_MINUS";
     private static final String ONlINEshlf="ONlINEshlf";
+    private static final String SAVE_AFTER_UP="SAVE_AFTER_UP";
+    private static final String COMPANY_NAME="COMPANY_NAME";
+
 
     //___________________________________________________________________________________
     private static final String TRANSFER_ITEMS_INFO = "TRANSFER_ITEMS_INFO";
@@ -529,7 +532,9 @@ public class InventoryDatabase extends SQLiteOpenHelper {
                 + SHELF_TAG_WIDTH + " NVARCHAR   ,"
                 + SHELF_TAG_HEIGHT + " NVARCHAR   ,"
                 + IS_QTY_MINUS + " NVARCHAR ,"
-                + ONlINEshlf + " NVARCHAR " +
+                + ONlINEshlf + " NVARCHAR ,"
+                + SAVE_AFTER_UP + " NVARCHAR ,"
+                + COMPANY_NAME + " NVARCHAR " +
 
                 ")";
         Idb.execSQL(CREATE_TABLE_MAIN_SETTING);
@@ -991,6 +996,22 @@ public class InventoryDatabase extends SQLiteOpenHelper {
         }catch (Exception e){
             Log.e("Exceptionupgrade", "MAIN_SETTING_TABLE TABLE  ONlINEshlf");
         }
+
+        try {
+            Log.e("upgrade","MAIN_SETTING_TABLE TABLE  SAVE_AFTER_UP");
+            Idb.execSQL("ALTER TABLE MAIN_SETTING_TABLE ADD " + SAVE_AFTER_UP + " TEXT"+" DEFAULT '0'");
+
+        }catch (Exception e){
+            Log.e("Exceptionupgrade", "MAIN_SETTING_TABLE TABLE  SAVE_AFTER_UP");
+        }
+
+        try {
+            Log.e("upgrade","MAIN_SETTING_TABLE TABLE  COMPANY_NAME");
+            Idb.execSQL("ALTER TABLE MAIN_SETTING_TABLE ADD " + COMPANY_NAME + " TEXT"+" DEFAULT '_'");
+
+        }catch (Exception e){
+            Log.e("Exceptionupgrade", "MAIN_SETTING_TABLE TABLE  COMPANY_NAME");
+        }
     }
 
 
@@ -1128,6 +1149,7 @@ public class InventoryDatabase extends SQLiteOpenHelper {
         values.put(CURRENCY_TYPE,  convertToEnglish(mainSetting.getCurrencyType()));
         values.put(CO_NAME,  convertToEnglish(""+mainSetting.getCoName()));
         values.put(DATABASE_NO,  (""+mainSetting.getDataBaseNo()));
+        values.put(ROOM_DATABASE_NO,  (""+mainSetting.getDataBaseNoRoom()));
 
         values.put(NUMBER_TYPE,  convertToEnglish(""+mainSetting.getNumberType()));
         values.put(ROTATE,  convertToEnglish(""+mainSetting.getRotate()));
@@ -1136,6 +1158,8 @@ public class InventoryDatabase extends SQLiteOpenHelper {
         values.put(SHELF_TAG_HEIGHT,  convertToEnglish(""+mainSetting.getHeight()));
         values.put(IS_QTY_MINUS,  convertToEnglish(""+mainSetting.getIsMinus()));
         values.  put(ONlINEshlf,  convertToEnglish(""+mainSetting.getONlINEshlf()));
+        values.  put(SAVE_AFTER_UP,  convertToEnglish(""+mainSetting.getIsSaveAfterUp()));
+        values.  put(COMPANY_NAME,  convertToEnglish(""+mainSetting.getCompanyName()));
 
         Idb.insert(MAIN_SETTING_TABLE, null, values);
         Idb.close();
@@ -2176,6 +2200,8 @@ sum+=cursor.getFloat(2);
                 item.setHeight(cursor.getInt(15));
                 item.setIsMinus(cursor.getInt(16));
                 item.setONlINEshlf(cursor.getString(17));
+                item.setIsSaveAfterUp(cursor.getString(18));
+                item.setCompanyName(cursor.getString(19));
                 passwords.add(item);
 
             } while (cursor.moveToNext());

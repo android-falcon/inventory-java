@@ -96,6 +96,7 @@ public class BluetoothConnectMenu extends Activity {
     private EditText btAddrBox;
     private Button connectButton;
     private Button searchButton;
+    String companyName="سنبل مول ";
 
     LinearLayout item;
     private ListView list;
@@ -530,6 +531,7 @@ public class BluetoothConnectMenu extends Activity {
                             resize=mainSettings.get(0).getReSize();
                             wid=mainSettings.get(0).getWidth();
                             hi=mainSettings.get(0).getHeight();
+                            companyName=mainSettings.get(0).getCompanyName();
                         } else {
                             PrintType = "0";
                             Currency="JD";
@@ -537,6 +539,7 @@ public class BluetoothConnectMenu extends Activity {
                             numberType="0";
                             rotate="0";
                             resize=0;
+                            companyName="";
                         }
 
                     } catch (Exception e) {
@@ -590,9 +593,12 @@ public class BluetoothConnectMenu extends Activity {
 
                                 bitmap = convertLayoutToImage_shelfTag_Iraq(Item.itemCardForPrint);
                                 Log.e("Count = ", "" + Item.itemCardForPrint.getFDPRC());
-                            } else {
+                            } else if (Item.itemCardForPrint.getItemG().equals("4")) {
 
                                 bitmap = convertLayoutToImage_shelfTag_Iraq_rotate(Item.itemCardForPrint);
+                                Log.e("Count = ", "" + Item.itemCardForPrint.getFDPRC());
+                            }else if (Item.itemCardForPrint.getItemG().equals("5")) {
+                                bitmap = convertLayoutToImage_shelfTag_DesignSunbul(Item.itemCardForPrint);
                                 Log.e("Count = ", "" + Item.itemCardForPrint.getFDPRC());
                             }
                     }else if(companyNo==2){
@@ -631,7 +637,7 @@ public class BluetoothConnectMenu extends Activity {
                             for (int i = 0; i < Item.barcodeListForPrint.size(); i++) {
                                 Bitmap bitmaps=null;
                                 if(companyNo==0) {
-                                     bitmaps = convertLayoutToImage_Barcode(Item.barcodeListForPrint.get(i), Item.itemCardForPrint.getOrgPrice(),Item.itemCardForPrint.getIsName());
+                                     bitmaps = convertLayoutToImage_Barcode_quqap_max(Item.barcodeListForPrint.get(i), Item.itemCardForPrint.getOrgPrice(),Item.itemCardForPrint.getIsName());
                                 }else if (companyNo==1){
                                      bitmaps = convertLayoutToImage_Barcode_athouab(Item.barcodeListForPrint.get(i), Item.itemCardForPrint.getOrgPrice(), Item.itemCardForPrint.getIsName());
 
@@ -723,7 +729,10 @@ public class BluetoothConnectMenu extends Activity {
                         .show();
                 //convertLayoutToImage_shelfTag(Item.itemCardForPrint);
                // convertLayoutToImage_shelfTag_barcode_qasion(Item.itemCardForPrint);
-//                convertLayoutToImage_shelfTag_Design3(Item.itemCardForPrint);
+//                convertLayoutToImage_shelfTag_DesignSunbul(Item.itemCardForPrint);
+
+//                convertLayoutToImage_Barcode_quqap(Item.barcodeListForPrint.get(0), Item.itemCardForPrint.getOrgPrice(),Item.itemCardForPrint.getIsName());
+
             }
 
             super.onPostExecute(result);
@@ -1316,6 +1325,101 @@ public class BluetoothConnectMenu extends Activity {
         }
 
     }
+
+    private Bitmap convertLayoutToImage_shelfTag_DesignSunbul(ItemCard itemCard) {
+        LinearLayout linearView = null;
+        final Dialog dialog_Header = new Dialog(BluetoothConnectMenu.this);
+        dialog_Header.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_Header.setCancelable(false);
+        dialog_Header.setContentView(R.layout.shlf_tag_dialog_design4);
+//        CompanyInfo companyInfo = obj.getAllCompanyInfo().get(0);
+
+        TextView itemName, price, itemBar,exp,coName;//,BarcodeText;// ;
+
+
+        LinearLayout priceLiner,ExpLiner;
+
+        ExpLiner= (LinearLayout) dialog_Header.findViewById(R.id.ExpLiner);
+        priceLiner = (LinearLayout) dialog_Header.findViewById(R.id.priceLiner);
+
+        itemName = (TextView) dialog_Header.findViewById(R.id.itemName);
+        price = (TextView) dialog_Header.findViewById(R.id.price);
+        itemBar = (TextView) dialog_Header.findViewById(R.id.itemBar);
+//        BarcodeText=(TextView) dialog_Header.findViewById(R.id.BarcodeText);
+        exp=(TextView) dialog_Header.findViewById(R.id.exp);
+
+        ImageView barcode = (ImageView) dialog_Header.findViewById(R.id.barcodeShelf);
+        coName=dialog_Header.findViewById(R.id.coName);
+
+        coName.setText(""+companyName);
+//        BarcodeText.setText(itemCard.getItemCode());
+
+        if (itemCard.getIsUnite().equals("**")) {
+            itemName.setText(itemCard.getItemName() );
+
+        }else {
+            try {
+                itemName.setText(itemCard.getItemName() + "/" + itemCard.getItemUnit());
+            }catch (Exception e){
+                itemName.setText(itemCard.getItemName() );
+
+            }
+
+        }
+
+        if (itemCard.getIsName().equals("**")) {
+            itemName.setVisibility(View.INVISIBLE);
+        } else {
+            itemName.setVisibility(View.VISIBLE);
+        }
+
+        itemBar.setText("" + itemCard.getItemCode());
+        if (itemCard.getSalePrc().equals("**")) {
+            priceLiner.setVisibility(View.INVISIBLE);
+        } else {
+            price.setText(convertToEnglish(numberFormat.format(Double.parseDouble(itemCard.getFDPRC()))) +" "+ Currency);
+        }
+
+        if(itemCard.getDepartmentId().equals("**")){
+            ExpLiner.setVisibility(View.INVISIBLE);
+        }else{
+            exp.setText(itemCard.getDepartmentId());
+        }
+
+
+        try {
+            Bitmap bitmaps = encodeAsBitmap(itemCard.getItemCode(), BarcodeFormat.CODE_128, 300, 40);
+            barcode.setImageBitmap(bitmaps);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+        // barcode.setVisibility(View.GONE);
+        linearView = (LinearLayout) dialog_Header.findViewById(R.id.shelfTagLiner);
+        if (rotate.equals("1")) {
+            linearView.setRotation(180f);
+            Log.e("setRotation","true"+rotate);
+
+        }
+        linearView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        linearView.layout(1, 1, linearView.getMeasuredWidth(), linearView.getMeasuredHeight());
+
+        Log.e("size of img ", "width=" + linearView.getMeasuredWidth() + "      higth =" + linearView.getHeight());
+        dialog_Header.show();
+        linearView.setDrawingCacheEnabled(true);
+        linearView.buildDrawingCache();
+        Bitmap bit = linearView.getDrawingCache();
+
+        if(resize==1){
+            Bitmap b=getResizedBitmap(bit,wid,hi);
+            shelfTagLinerTests.setImageBitmap(b);
+            return b;// creates bitmap and returns the same
+        }else {
+            return bit;// creates bitmap and returns the same
+        }
+
+    }
     private Bitmap convertLayoutToImage_Barcode_qastas(ItemCard itemCard, String index,String nameIn) {
         LinearLayout linearView = null;
         final Dialog dialog_Header = new Dialog(BluetoothConnectMenu.this);
@@ -1426,7 +1530,7 @@ public class BluetoothConnectMenu extends Activity {
 
 
         try {
-            Bitmap bitmaps = encodeAsBitmap(itemCard.getItemCode(), BarcodeFormat.CODE_128, 50, 50);
+            Bitmap bitmaps = encodeAsBitmap(itemCard.getItemCode(), BarcodeFormat.CODE_128, 90, 50);
             barcode.setImageBitmap(bitmaps);
         } catch (WriterException e) {
             e.printStackTrace();
@@ -1449,6 +1553,141 @@ public class BluetoothConnectMenu extends Activity {
 
 
     }
+
+    private Bitmap convertLayoutToImage_Barcode_quqap(ItemCard itemCard, String index,String nameIn) {
+        LinearLayout linearView = null;
+        final Dialog dialog_Header = new Dialog(BluetoothConnectMenu.this);
+        dialog_Header.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_Header.setCancelable(false);
+        dialog_Header.setContentView(R.layout.barcode_print_dialog_quqap);
+
+
+        TextView itemName, price, BarcodeText, exp;
+
+        LinearLayout ExpLiner, priceLiner;
+
+//        ExpLiner= (LinearLayout) dialog_Header.findViewById(R.id.ExpLiner);
+        priceLiner = (LinearLayout) dialog_Header.findViewById(R.id.priceLiner);
+
+        itemName = (TextView) dialog_Header.findViewById(R.id.itemName);
+        price = (TextView) dialog_Header.findViewById(R.id.price);
+        BarcodeText = (TextView) dialog_Header.findViewById(R.id.BarcodeText);
+//        exp=(TextView) dialog_Header.findViewById(R.id.exp);
+
+        ImageView barcode = (ImageView) dialog_Header.findViewById(R.id.barcodeShelf);
+
+        BarcodeText.setText(itemCard.getItemCode());
+        itemName.setText(itemCard.getItemName());
+        if (index.equals("**")) {
+            priceLiner.setVisibility(View.INVISIBLE);
+        } else {
+            price.setText(convertToEnglish(numberFormat.format(Double.parseDouble(itemCard.getFDPRC()))) +" "+ Currency);
+        }
+        if (nameIn.equals("**")) {
+            itemName.setVisibility(View.INVISIBLE);
+        } else {
+            itemName.setText(itemCard.getItemName()+"");
+        }
+
+//        if(itemCard.getDepartmentId().equals("**")){
+//            ExpLiner.setVisibility(View.INVISIBLE);
+//        }else{
+//            exp.setText(itemCard.getDepartmentId());
+//        }
+
+
+        try {
+            Bitmap bitmaps = encodeAsBitmap(itemCard.getItemCode(), BarcodeFormat.CODE_128, 200, 50);
+            barcode.setImageBitmap(bitmaps);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+
+        linearView = (LinearLayout) dialog_Header.findViewById(R.id.shelfTagLiner);
+
+        linearView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        linearView.layout(1, 1, linearView.getMeasuredWidth(), linearView.getMeasuredHeight());
+
+        Log.e("size of img ", "width=" + linearView.getMeasuredWidth() + "      higth =" + linearView.getHeight());
+        dialog_Header.show();
+        linearView.setDrawingCacheEnabled(true);
+        linearView.buildDrawingCache();
+        Bitmap bit = linearView.getDrawingCache();
+
+        return bit;// creates bitmap and returns the same
+
+
+    }
+    private Bitmap convertLayoutToImage_Barcode_quqap_max(ItemCard itemCard, String index,String nameIn) {
+        LinearLayout linearView = null;
+        final Dialog dialog_Header = new Dialog(BluetoothConnectMenu.this);
+        dialog_Header.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_Header.setCancelable(false);
+        dialog_Header.setContentView(R.layout.barcode_print_dialog_quqap_max);
+
+
+        TextView itemName, price, BarcodeText, exp;
+
+        LinearLayout ExpLiner, priceLiner;
+
+//        ExpLiner= (LinearLayout) dialog_Header.findViewById(R.id.ExpLiner);
+        priceLiner = (LinearLayout) dialog_Header.findViewById(R.id.priceLiner);
+
+        itemName = (TextView) dialog_Header.findViewById(R.id.itemName);
+        price = (TextView) dialog_Header.findViewById(R.id.price);
+        BarcodeText = (TextView) dialog_Header.findViewById(R.id.BarcodeText);
+//        exp=(TextView) dialog_Header.findViewById(R.id.exp);
+
+        ImageView barcode = (ImageView) dialog_Header.findViewById(R.id.barcodeShelf);
+
+        BarcodeText.setText(itemCard.getItemCode());
+        itemName.setText(itemCard.getItemName());
+        if (index.equals("**")) {
+            priceLiner.setVisibility(View.INVISIBLE);
+        } else {
+            price.setText(convertToEnglish(numberFormat.format(Double.parseDouble(itemCard.getFDPRC()))) +" "+ Currency);
+        }
+        if (nameIn.equals("**")) {
+            itemName.setVisibility(View.INVISIBLE);
+        } else {
+            itemName.setText(itemCard.getItemName()+"");
+        }
+
+//        if(itemCard.getDepartmentId().equals("**")){
+//            ExpLiner.setVisibility(View.INVISIBLE);
+//        }else{
+//            exp.setText(itemCard.getDepartmentId());
+//        }
+
+
+        try {
+            Bitmap bitmaps = encodeAsBitmap(itemCard.getItemCode(), BarcodeFormat.CODE_128, 200, 50);
+            barcode.setImageBitmap(bitmaps);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+
+        linearView = (LinearLayout) dialog_Header.findViewById(R.id.shelfTagLiner);
+
+        linearView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        linearView.layout(1, 1, linearView.getMeasuredWidth(), linearView.getMeasuredHeight());
+
+        Log.e("size of img ", "width=" + linearView.getMeasuredWidth() + "      higth =" + linearView.getHeight());
+        dialog_Header.show();
+        linearView.setDrawingCacheEnabled(true);
+        linearView.buildDrawingCache();
+        Bitmap bit = linearView.getDrawingCache();
+
+        return bit;// creates bitmap and returns the same
+
+
+    }
+
+
     private Bitmap convertLayoutToImage_Barcode_pink(ItemCard itemCard, String index,String nameIn) {
         LinearLayout linearView = null;
         final Dialog dialog_Header = new Dialog(BluetoothConnectMenu.this);

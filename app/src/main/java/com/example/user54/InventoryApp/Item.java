@@ -1832,6 +1832,7 @@ printEditTextTag.setText(convertToEnglish(today));
         designList.add(getResources().getString(R.string.des_3));
         designList.add(getResources().getString(R.string.des_4));
         designList.add(getResources().getString(R.string.des_5));
+        designList.add(getResources().getString(R.string.des_6));
 
         List<MainSetting> mainSettings = InventDB.getAllMainSetting();
         if (mainSettings.size() != 0) {
@@ -1905,6 +1906,16 @@ printEditTextTag.setText(convertToEnglish(today));
                         shelfTagLiner4.setVisibility(View.VISIBLE);
 
                         DesignType[0] =4;
+                        break;
+                    case 5:
+
+                        shelfTagLiner3.setVisibility(View.GONE);
+                        shelfTagLiner.setVisibility(View.GONE);
+                        shelfTagLiner1.setVisibility(View.GONE);
+                        shelfTagLiner4.setRotation(180.0f);
+                        shelfTagLiner4.setVisibility(View.GONE);
+
+                        DesignType[0] =5;
                         break;
                 }
 

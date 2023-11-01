@@ -20,6 +20,24 @@ public class MainSetting {
     private int dataBaseNoRoom;
     private int isMinus;
     private String ONlINEshlf;
+    private  String isSaveAfterUp;
+    private  String companyName;
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getIsSaveAfterUp() {
+        return isSaveAfterUp;
+    }
+
+    public void setIsSaveAfterUp(String isSaveAfterUp) {
+        this.isSaveAfterUp = isSaveAfterUp;
+    }
 
     public String getONlINEshlf() {
         return ONlINEshlf;
@@ -39,7 +57,7 @@ public class MainSetting {
         this.isQr = isQr;
     }
 
-    public MainSetting(String IP, String storNo, String isAssest, String isQr, String onlinePrice, String companyNo,String printerType,String currencyType,int CoName,String numberType,String rotate,int dataBaseNo,int reSize,int width,int height,int isMinus,String onlinShl) {
+    public MainSetting(String IP, String storNo, String isAssest, String isQr, String onlinePrice, String companyNo,String printerType,String currencyType,int CoName,String numberType,String rotate,int dataBaseNo,int dataBaseNoR,int reSize,int width,int height,int isMinus,String onlinShl,String saveUp,String coNo) {
         this.IP = IP;
         this.StorNo = storNo;
         this.isAssest = isAssest;
@@ -55,8 +73,11 @@ public class MainSetting {
         this.width=width;
         this.height=height;
         this.dataBaseNo=dataBaseNo;
+        this.dataBaseNoRoom=dataBaseNoR;
         this.isMinus=isMinus;
         this.ONlINEshlf= onlinShl;
+        this.isSaveAfterUp=saveUp;
+        this.companyName=coNo;
     }
 
     public String getPrinterType() {

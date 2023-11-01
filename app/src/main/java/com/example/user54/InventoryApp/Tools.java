@@ -138,6 +138,7 @@ public class Tools extends AppCompatActivity {
                 case R.id.sendSer:
 //                    importJson sendCloud = new importJson(Tools.this,"");
 //                    sendCloud.startSending("GetStory");
+                    notClickable();
                     List<MainSetting> mainSetting = InventDB.getAllMainSetting();
                     if (mainSetting.size() != 0) {
 
@@ -159,7 +160,7 @@ public class Tools extends AppCompatActivity {
                                 .showCancelButton(false)
                                 .setCancelClickListener(null)
                                 .setConfirmClickListener(null).show();
-
+                        Clickable();
 
                     }
 
@@ -425,6 +426,7 @@ public class Tools extends AppCompatActivity {
         final RadioButton athouab = MainSettingdialog.findViewById(R.id.athouab);
         final RadioButton qas = MainSettingdialog.findViewById(R.id.qas);
 
+        final EditText companyName=MainSettingdialog.findViewById(R.id.companyName);
         final RadioButton normal = MainSettingdialog.findViewById(R.id.normal);
         final RadioButton withCom_3 = MainSettingdialog.findViewById(R.id.withCom_3);
         final RadioButton withCom_2 = MainSettingdialog.findViewById(R.id.withCom_2);
@@ -433,6 +435,7 @@ public class Tools extends AppCompatActivity {
         final TextView dataBase = MainSettingdialog.findViewById(R.id.dataBase);
         TextView room = MainSettingdialog.findViewById(R.id.room);
         final CheckBox resizeCheckBox = MainSettingdialog.findViewById(R.id.resizeCheckBox);
+        final CheckBox saveUpCheckBox= MainSettingdialog.findViewById(R.id.updateQty);
           printerw = MainSettingdialog.findViewById(R.id.printerw);
           printerH = MainSettingdialog.findViewById(R.id.printerH);
           final CheckBox minusQty=MainSettingdialog.findViewById(R.id.minusQty);
@@ -465,6 +468,8 @@ public class Tools extends AppCompatActivity {
 
             }
         });
+
+
 
 
         final List<String> StokNo = new ArrayList<>();
@@ -530,6 +535,7 @@ public class Tools extends AppCompatActivity {
             ipSetting.setText(mainSettings.get(0).getIP());
             StoreName.setText(InventDB.getStkName(mainSettings.get(0).getStorNo()));
 
+            companyName.setText(""+mainSettings.get(0).getCompanyName());
             dataBase.setText(""+mainSettings.get(0).getDataBaseNo());//mainSettings.get(0).getDataBaseNo()
             room.setText("" + mainSettings.get(0).getDataBaseNoRoom());
 
@@ -573,6 +579,12 @@ public class Tools extends AppCompatActivity {
                 AssestCheckBox.setChecked(true);
             } else {
                 AssestCheckBox.setChecked(false);
+            }
+
+            if (mainSettings.get(0).getIsSaveAfterUp().equals("1")) {
+                saveUpCheckBox.setChecked(true);
+            } else {
+                saveUpCheckBox.setChecked(false);
             }
             if (mainSettings.get(0).getIsQr().equals("1")) {
                 QrCheckBox.setChecked(true);
@@ -680,6 +692,8 @@ public class Tools extends AppCompatActivity {
                     String numberType = "0";
                     String rot = "0";
                     String resz = "0";
+                    String saveUp = "0";
+
                     int isMin=0;
                     int  onlinShl=0;
                     if (StokNo.size() != 0) {
@@ -753,11 +767,17 @@ public class Tools extends AppCompatActivity {
                         resz = "0";
                     }
 
+                    if ( saveUpCheckBox.isChecked()) {
+                        saveUp = "1";
+                    } else {
+                        saveUp = "0";
+                    }
+
                     if (resizeCheckBox.isChecked()) {
-                        InventDB.addAllMainSetting(new MainSetting(ipSetting.getText().toString(), Store, isAssest, isQr, isOnline, companyNo.getText().toString(), printerType, currency[0], CoName, numberType, rot,Integer.parseInt( ""+dataBase.getText().toString()), Integer.parseInt(resz), Integer.parseInt(printerw.getText().toString()), Integer.parseInt(printerH.getText().toString()),isMin,onlinShl+""));
+                        InventDB.addAllMainSetting(new MainSetting(ipSetting.getText().toString(), Store, isAssest, isQr, isOnline, companyNo.getText().toString(), printerType, currency[0], CoName, numberType, rot,Integer.parseInt( ""+dataBase.getText().toString()),Integer.parseInt(""+dataBase.getText().toString()),  Integer.parseInt(resz), Integer.parseInt(printerw.getText().toString()), Integer.parseInt(printerH.getText().toString()),isMin,onlinShl+"",saveUp,companyName.getText().toString()));
 //                    Toast.makeText(Tools.this, getResources().getString(R.string.saveMainSetting), Toast.LENGTH_SHORT).show();
                     } else {
-                        InventDB.addAllMainSetting(new MainSetting(ipSetting.getText().toString(), Store, isAssest, isQr, isOnline, companyNo.getText().toString(), printerType, currency[0], CoName, numberType, rot,Integer.parseInt(""+dataBase.getText().toString()), Integer.parseInt(resz),W ,H ,isMin,onlinShl+"" ));
+                        InventDB.addAllMainSetting(new MainSetting(ipSetting.getText().toString(), Store, isAssest, isQr, isOnline, companyNo.getText().toString(), printerType, currency[0], CoName, numberType, rot,Integer.parseInt(""+dataBase.getText().toString()), Integer.parseInt(""+dataBase.getText().toString()), Integer.parseInt(resz),W ,H ,isMin,onlinShl+"" ,saveUp,companyName.getText().toString()));
 
                     }
                     //writeToFile(dataBase.getText().toString(),Tools.this);

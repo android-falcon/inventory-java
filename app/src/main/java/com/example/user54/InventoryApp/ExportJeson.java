@@ -96,7 +96,7 @@ public class ExportJeson {
 //            progressDialog.show();
             pdItem = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
             pdItem.getProgressHelper().setBarColor(Color.parseColor("#FDD835"));
-            pdItem.setTitleText(context.getResources().getString(R.string.exportiteminfo));
+            pdItem.setTitleText(context.getResources().getString(R.string.exportiteminfo)+" I");
             pdItem.setCancelable(false);
             pdItem.show();
 
@@ -172,6 +172,14 @@ public class ExportJeson {
         protected void onPostExecute(String JsonResponse) {
             super.onPostExecute(JsonResponse);
 
+            try{
+                Tools t=(Tools) context;
+                t.Clickable();
+
+            }catch (Exception e){
+
+            }
+
             if (JsonResponse != null && JsonResponse.contains("Saved Successfully")) {
                 Log.e("ExportData", "****Success");
                 dbHandler.updateIsExport();
@@ -226,7 +234,7 @@ public class ExportJeson {
 //            progressDialog.show();
             pdItem = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
             pdItem.getProgressHelper().setBarColor(Color.parseColor("#FDD835"));
-            pdItem.setTitleText(context.getResources().getString(R.string.exportiteminfo));
+            pdItem.setTitleText(context.getResources().getString(R.string.exportiteminfo)+" B");
             pdItem.setCancelable(false);
             pdItem.show();
 

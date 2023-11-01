@@ -94,17 +94,18 @@
                             android:textColor="@color/black"
                             android:textSize="14sp"
                             android:textStyle="bold" />
+
                         <EditText
                             android:id="@+id/ItemCodeEditTextTag"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:background="@drawable/bac_frame_s"
+                            android:drawableStart="@drawable/ic_search_black_24dp"
                             android:ems="10"
                             android:gravity="center"
-                            android:layout_weight="1"
-                            android:padding="5dp"
-                            android:drawableStart="@drawable/ic_search_black_24dp"
                             android:inputType="textPersonName"
+                            android:padding="5dp"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
 

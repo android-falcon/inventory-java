@@ -2,6 +2,8 @@ package com.example.user54.InventoryApp.Model;
 
 import android.util.Log;
 
+import androidx.room.Ignore;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,13 +22,16 @@ public class ItemInfo  {
     private String Location;
     private String QRCode;
     private String LotNo;
+    @Ignore
     private String IsDelete;
+    @Ignore
     private double Summation;
 
     public ItemInfo() {
 
     }
 
+    @Ignore
     public ItemInfo(String itemCode, String itemName, float itemQty, float rowIndex, String itemLocation, int serialNo, String expDate, float salePrice, String trnDate, String isExport, String location, String QRCode, String lotNo) {
         this.itemCode = itemCode;
         this.itemName = itemName;
